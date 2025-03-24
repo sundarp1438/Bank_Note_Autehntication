@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: banknote-ann-api
+  labels:
+    app: banknote-ann-api
+spec:
+  replicas: 2  # Number of replicas for scaling
+  selector:
+    matchLabels:
+      app: banknote-ann-api
+  template:
+    metadata:
+      labels:
+        app: banknote-ann-api
+    spec:
+      containers:
+        - name: banknote-ann-api
+          image: banknote-ann-api:latest  # Ensure this matches your Docker image
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          env:
+            - name: MLFLOW_TRACKING_URI
+              value: "http://127.0.0.1:5000"  # Optional: MLflow tracking
+          volumeMounts:
+            - name: model-storage
+              mountPath: /app/models  # Mount the models directory inside the container
+      volumes:
+        - name: model-storage
+          emptyDir: {}  # Use emptyDir for temporary storage (adjust for persistence)
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: banknote-ann-api-service
+spec:
+  selector:
+    app: banknote-ann-api
+  type: LoadBalancer  # Change to NodePort if running locally
+  ports:
+    - protocol: TCP
+      port: 80  # Expose service on port 80
+      targetPort: 8000  # Redirect to FastAPI port inside the pod

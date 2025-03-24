@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/08f5a9f27b1a47fda07d30d64f327674/artifacts
+deleted_time: 1742783416564
+end_time: 1742782906665
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 08f5a9f27b1a47fda07d30d64f327674
+run_name: overjoyed-moose-187
+run_uuid: 08f5a9f27b1a47fda07d30d64f327674
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742782904712
+status: 4
+tags: []
+user_id: user

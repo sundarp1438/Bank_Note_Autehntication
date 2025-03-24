@@ -1,0 +1,70 @@
+stages:
+
+  data_load:
+    cmd: python data_load.py --config=params.yaml
+    deps:
+      - data_load.py
+    params:
+      - base
+      - data_load
+    outs:
+      - data/raw/BankNoteAuthentication.csv
+
+  featurize:
+    cmd: python featurize.py --config=params.yaml
+    deps:
+      - data/raw/BankNoteAuthentication.csv
+      - featurize.py
+    params:
+      - base
+      - featurize
+    outs:
+      - data/processed/featured_banknote_data.csv
+
+  data_split:
+    cmd: python data_split.py --config=params.yaml
+    deps:
+      - data/processed/featured_banknote_data.csv
+      - data_split.py
+    params:
+      - base
+      - data_split
+    outs:
+      - data/processed/train_banknote_data.csv
+      - data/processed/test_banknote_data.csv
+
+  train:
+    cmd: python train.py --config=params.yaml
+    deps:
+      - data/processed/train_banknote_data.csv
+      - train.py
+    params:
+      - base
+      - train
+    outs:
+      - models/banknote_ann_model.h5  # TensorFlow ANN Model
+
+  evaluate:
+    cmd: python evaluate.py --config=params.yaml
+    deps:
+      - data/processed/test_banknote_data.csv
+      - models/banknote_ann_model.h5
+      - evaluate.py
+    params:
+      - base
+      - evaluate
+    outs:
+      - reports/metrics.json
+      - reports/system_metrics.json
+
+  data_drift:
+    cmd: python data_drift.py --config=params.yaml
+    deps:
+      - data/processed/train_banknote_data.csv
+      - data/processed/test_banknote_data.csv
+      - data_drift.py
+    params:
+      - base
+      - evaluate.drift_report_path
+    outs:
+      - reports/data_drift.html

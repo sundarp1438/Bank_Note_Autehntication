@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/user/OneDrive%20-%20GTR%20TeK%20LLC/Desktop/MLOPS/Bank_Note_Authentication/mlruns/884303009958146188/1b2fd005d280407299c7158244a09605/artifacts
+end_time: 1742784143265
+entry_point_name: ''
+experiment_id: '884303009958146188'
+lifecycle_stage: active
+run_id: 1b2fd005d280407299c7158244a09605
+run_name: vaunted-mouse-668
+run_uuid: 1b2fd005d280407299c7158244a09605
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742784055905
+status: 3
+tags: []
+user_id: user

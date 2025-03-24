@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1742785967469
+current_stage: None
+description: ''
+last_updated_timestamp: 1742785967469
+name: ANN-Model
+run_id: 7d292b9c1e72421387dac52ddf59f706
+run_link: ''
+source: file:///C:/Users/user/OneDrive%20-%20GTR%20TeK%20LLC/Desktop/MLOPS/Bank_Note_Authentication/mlruns/884303009958146188/7d292b9c1e72421387dac52ddf59f706/artifacts/evaluated_model
+status: READY
+status_message: null
+storage_location: file:///C:/Users/user/OneDrive%20-%20GTR%20TeK%20LLC/Desktop/MLOPS/Bank_Note_Authentication/mlruns/884303009958146188/7d292b9c1e72421387dac52ddf59f706/artifacts/evaluated_model
+user_id: null
+version: 1

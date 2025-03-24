@@ -1,0 +1,32 @@
+base:
+  random_state: 42
+
+data_load:
+  dataset_path: data/raw/BankNoteAuthentication.csv
+
+featurize:
+  processed_path: data/processed/featured_banknote_data.csv
+  target_column: class  # The target variable (binary classification)
+
+data_split:
+  test_size: 0.2
+  trainset_path: data/processed/train_banknote_data.csv
+  testset_path: data/processed/test_banknote_data.csv
+
+train:
+  model_path: models/banknote_ann_model.h5
+  model_type: ANN
+  input_shape: 4  # Number of input features
+  hidden_layers: [64, 32]  # Two hidden layers with 64 and 32 neurons
+  activation: relu
+  output_activation: sigmoid
+  loss: binary_crossentropy
+  optimizer: adam
+  metrics: [accuracy]
+  epochs: 50
+  batch_size: 32
+
+evaluate:
+  metrics_path: reports/metrics.json
+  system_metrics_path: reports/system_metrics.json
+  drift_report_path: reports/data_drift.html

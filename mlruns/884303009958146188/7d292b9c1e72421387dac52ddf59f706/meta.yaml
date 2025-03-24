@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/user/OneDrive%20-%20GTR%20TeK%20LLC/Desktop/MLOPS/Bank_Note_Authentication/mlruns/884303009958146188/7d292b9c1e72421387dac52ddf59f706/artifacts
+end_time: 1742785322660
+entry_point_name: ''
+experiment_id: '884303009958146188'
+lifecycle_stage: active
+run_id: 7d292b9c1e72421387dac52ddf59f706
+run_name: delicate-gnu-926
+run_uuid: 7d292b9c1e72421387dac52ddf59f706
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742785247767
+status: 3
+tags: []
+user_id: user

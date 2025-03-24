@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/157b09c15e2249579dd37b2d551403f2/artifacts
+end_time: 1742783955042
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 157b09c15e2249579dd37b2d551403f2
+run_name: nimble-eel-634
+run_uuid: 157b09c15e2249579dd37b2d551403f2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742783478096
+status: 3
+tags: []
+user_id: user

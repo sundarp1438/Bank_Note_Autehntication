@@ -1,0 +1,163 @@
+schema: '2.0'
+stages:
+  data_load:
+    cmd: python data_load.py --config=params.yaml
+    deps:
+    - path: data_load.py
+      hash: md5
+      md5: ac73858ea81a7025157775c704aa7e95
+      size: 1647
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+        data_load:
+          dataset_path: data/raw/BankNoteAuthentication.csv
+    outs:
+    - path: data/raw/BankNoteAuthentication.csv
+      hash: md5
+      md5: 3687d24e11521032bc1aeb67983784a8
+      size: 46446
+  featurize:
+    cmd: python featurize.py --config=params.yaml
+    deps:
+    - path: data/raw/BankNoteAuthentication.csv
+      hash: md5
+      md5: 3687d24e11521032bc1aeb67983784a8
+      size: 46446
+    - path: featurize.py
+      hash: md5
+      md5: 42cd9a2e77f97e5843a054dfa803b221
+      size: 2253
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+        featurize:
+          processed_path: data/processed/featured_banknote_data.csv
+          target_column: class
+    outs:
+    - path: data/processed/featured_banknote_data.csv
+      hash: md5
+      md5: c13a64a4caaae6d688e9c3bfe0d580e4
+      size: 111823
+  data_split:
+    cmd: python data_split.py --config=params.yaml
+    deps:
+    - path: data/processed/featured_banknote_data.csv
+      hash: md5
+      md5: c13a64a4caaae6d688e9c3bfe0d580e4
+      size: 111823
+    - path: data_split.py
+      hash: md5
+      md5: 2922292917a273c2d5fbed6e14546c7d
+      size: 2201
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+        data_split:
+          test_size: 0.2
+          trainset_path: data/processed/train_banknote_data.csv
+          testset_path: data/processed/test_banknote_data.csv
+    outs:
+    - path: data/processed/test_banknote_data.csv
+      hash: md5
+      md5: 3b5239ae50ba342b65dbaf533b981e7c
+      size: 22090
+    - path: data/processed/train_banknote_data.csv
+      hash: md5
+      md5: e612d899ed994041399f5360196deed2
+      size: 87956
+  train:
+    cmd: python train.py --config=params.yaml
+    deps:
+    - path: data/processed/train_banknote_data.csv
+      hash: md5
+      md5: e612d899ed994041399f5360196deed2
+      size: 87956
+    - path: train.py
+      hash: md5
+      md5: 18619dc7a7e67da173a4227413e0726e
+      size: 3176
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+        train:
+          model_path: models/banknote_ann_model.h5
+          model_type: ANN
+          input_shape: 4
+          hidden_layers:
+          - 64
+          - 32
+          activation: relu
+          output_activation: sigmoid
+          loss: binary_crossentropy
+          optimizer: adam
+          metrics:
+          - accuracy
+          epochs: 50
+          batch_size: 32
+    outs:
+    - path: models/banknote_ann_model.h5
+      hash: md5
+      md5: 1fcbe6d4711d90f779f6d1f7455c362b
+      size: 57800
+  evaluate:
+    cmd: python evaluate.py --config=params.yaml
+    deps:
+    - path: data/processed/test_banknote_data.csv
+      hash: md5
+      md5: 3b5239ae50ba342b65dbaf533b981e7c
+      size: 22090
+    - path: evaluate.py
+      hash: md5
+      md5: 23d3204d2c33ba33e9e2d0c9dd5a5813
+      size: 3491
+    - path: models/banknote_ann_model.h5
+      hash: md5
+      md5: 1fcbe6d4711d90f779f6d1f7455c362b
+      size: 57800
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+        evaluate:
+          metrics_path: reports/metrics.json
+          system_metrics_path: reports/system_metrics.json
+          drift_report_path: reports/data_drift.html
+    outs:
+    - path: reports/metrics.json
+      hash: md5
+      md5: b34c1e40d81eeebb0e5f2ba572c89a2d
+      size: 697
+    - path: reports/system_metrics.json
+      hash: md5
+      md5: 45a2b81af1c8c8a6bce05e3e34841ce4
+      size: 79
+  data_drift:
+    cmd: python data_drift.py --config=params.yaml
+    deps:
+    - path: data/processed/test_banknote_data.csv
+      hash: md5
+      md5: 3b5239ae50ba342b65dbaf533b981e7c
+      size: 22090
+    - path: data/processed/train_banknote_data.csv
+      hash: md5
+      md5: e612d899ed994041399f5360196deed2
+      size: 87956
+    - path: data_drift.py
+      hash: md5
+      md5: 9519365fc25695d587c0fabc54ea59ca
+      size: 1772
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+        evaluate.drift_report_path: reports/data_drift.html
+    outs:
+    - path: reports/data_drift.html
+      hash: md5
+      md5: 5f89b554e967a2e2c4c4addc1580d1ad
+      size: 3098205

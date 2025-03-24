@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/0479b7d5e3614b94a44de4401c384c14/artifacts
+deleted_time: 1742783409108
+end_time: 1742782529439
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 0479b7d5e3614b94a44de4401c384c14
+run_name: efficient-tern-967
+run_uuid: 0479b7d5e3614b94a44de4401c384c14
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742782528088
+status: 4
+tags: []
+user_id: user

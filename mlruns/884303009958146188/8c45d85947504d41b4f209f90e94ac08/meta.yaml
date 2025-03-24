@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/user/OneDrive%20-%20GTR%20TeK%20LLC/Desktop/MLOPS/Bank_Note_Authentication/mlruns/884303009958146188/8c45d85947504d41b4f209f90e94ac08/artifacts
+end_time: 1742784431250
+entry_point_name: ''
+experiment_id: '884303009958146188'
+lifecycle_stage: active
+run_id: 8c45d85947504d41b4f209f90e94ac08
+run_name: judicious-wolf-404
+run_uuid: 8c45d85947504d41b4f209f90e94ac08
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742784346936
+status: 3
+tags: []
+user_id: user
