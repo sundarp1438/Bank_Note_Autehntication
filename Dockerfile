@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy requirements.txt and install dependencies first
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Copy the rest of the application files
 COPY banknote_ann_api.py params.yaml models/banknote_ann_model.h5 ./
