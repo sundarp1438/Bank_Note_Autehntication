@@ -1,27 +1,20 @@
-# Base image
-FROM python:3.10-slim
+# Use a lightweight Python base image
+FROM python:3.9-slim
 
-# Set working directory
+# Set the working directory
 WORKDIR /app
 
-# Copy requirements and setup files
-COPY requirements.txt setup.py ./
-
-# Copy source code
-COPY module/ ./src/
+# Copy only requirements.txt first to leverage Docker caching
+COPY requirements.txt .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install --no-cache-dir fastapi uvicorn
 
-# Install the package
-RUN pip install -e .
+# Copy the rest of the application files
+COPY banknote_ann_api.py params.yaml models/banknote_ann_model.h5 ./
 
-# Copy the trained model (this will be mounted in production)
-COPY models/banknote_ann_model.h5 ./
-
-# Expose port
+# Expose FastAPI port
 EXPOSE 8000
 
-# Run the FastAPI app
-CMD ["uvicorn", "src.app:app", "--host", "0.0.0.0", "--port", "8000"] 
+# Run FastAPI application
+CMD ["uvicorn", "banknote_ann_api:app", "--host", "0.0.0.0", "--port", "8000"]
