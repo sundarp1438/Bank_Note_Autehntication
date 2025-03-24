@@ -1,4 +1,4 @@
-name: CI/CD for FastAPI ANN Model
+name: CI/CD for ANN Model
 
 on:
   push:
