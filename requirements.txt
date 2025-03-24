@@ -22,4 +22,3 @@ fastapi
 pyyaml
 dvc
 setuptools
--e .
