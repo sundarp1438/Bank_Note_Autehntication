@@ -18,7 +18,7 @@ RUN pip install --no-cache-dir fastapi uvicorn
 RUN pip install -e .
 
 # Copy the trained model (this will be mounted in production)
-COPY model.joblib ./
+COPY models/banknote_ann_model.h5 ./
 
 # Expose port
 EXPOSE 8000
